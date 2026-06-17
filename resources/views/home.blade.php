@@ -1,17 +1,66 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home Provvisoria</title>
-</head>
-<body>
-    <h1>BINGO! Sei atterrato nella Home!</h1>
-    
-    <h2>Benvenuto, {{ session('username') }}!</h2>
-    
-    <p>Se vedi il tuo nome qui sopra, il collegamento col DB hw2 è perfetto.</p>
+@extends('layouts.app')
 
-    <a href="{{ url('login') }}">Torna al Login</a>
+@section('title', 'I Prodotti')
 
-    <a href="{{ url('logout') }}">Effettua il Logout</a>
-</body>
-</html>
+@section('scripts')
+    <link rel="stylesheet" href="{{ asset('style_home.css') }}">
+    <script src="{{ asset('script_home.js') }}" defer></script>
+@endsection
+
+@section('content')
+    <div class="main-container">
+
+        <nav class="navigation-menu">
+            <a href="#">Home</a>
+            <span class="separator"> > </span>
+            <span class="current-page">I Prodotti</span>
+        </nav>
+
+        <h2 id="products-title">I Prodotti</h2>
+
+        <div class="content-flex">
+            <nav class="sidebar">
+                <div class="sidebar-menu">
+                    <a href="#">Menù</a>
+                    <a href="#">Snack</a>
+                    <a href="#">Drink</a>
+                    <a href="#">Pollo</a>
+                    <a href="#">Panini e Twist</a>
+                    <a href="#">Box Meal</a>
+                    <a href="#">Kids&Family</a>
+                    <a href="#">Veggie</a>
+                    <a href="#">Insalatone</a>
+                    <a href="#">Snack e contorni</a>
+                    <a href="#">Dolci</a>
+                    <a href="#">Bibite</a>
+                    <a href="#">Prezzi Smart</a>
+                    <a href="#">Offerte</a>
+                </div>
+            </nav>
+
+            <article id="article">
+
+                <section class="menu-category first-category" data-category="menu">
+                    <h2 class="category-title">Menù</h2>
+                </section>
+                
+                <section class="menu-category" data-category="snack">
+                    <h2 class="category-title">Snack</h2>
+                </section>
+
+                <section class="menu-category" data-category="drink">
+                    <h2 class="category-title">Drink</h2>
+                </section>
+
+                <section id="sezione-extra" class="menu-category last-category hidden" data-category="extra">
+                    <h2 class="category-title">Varie</h2>
+                </section>
+
+                <div id="carica-altre-categorie">
+                    <a href="#" id="carica-altri">Carica altri</a>
+                </div>
+
+            </article>
+        </div>
+    </div>
+@endsection

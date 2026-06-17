@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\HomeController;
 
 Route::get('login', [LoginController::class, 'showLoginForm']);
 Route::post('login', [LoginController::class, 'checkLogin']);
@@ -13,6 +14,4 @@ Route::post('register', [RegisterController::class, 'createUser']);
 Route::get('check_username', [RegisterController::class, 'checkUsername']);
 Route::get('check_email', [RegisterController::class, 'checkEmail']);
 
-Route::get('home', function () {
-    return view('home');
-});
+Route::get('home', [HomeController::class, 'showHomePage']);
