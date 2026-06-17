@@ -10,7 +10,7 @@ CREATE TABLE users (
     surname varchar(255) not null
 );
 
-CREATE TABLE cibo (
+CREATE TABLE products (
     id integer primary key auto_increment,
     category varchar(255) not null,
     name varchar(255) not null,
@@ -19,7 +19,7 @@ CREATE TABLE cibo (
     price double not null
 );
 
-INSERT INTO cibo (category, name, image, macro, price) VALUES
+INSERT INTO products (category, name, image, macro, price) VALUES
 ('menu', 'Box Meal', 'img/box_meal.png', 'hamburger', 8.99),
 ('menu', 'Bucket', 'img/bucket.png', 'chicken', 16.99),
 ('menu', 'Double Kentucky BBQ', 'img/double_kentucky_bbq.png', 'hamburger', 7.59),
@@ -37,10 +37,10 @@ INSERT INTO cibo (category, name, image, macro, price) VALUES
 CREATE TABLE cart (
     id integer primary key auto_increment,
     user_id integer not null,
-    cibo_id integer not null,
+    products_id integer not null,
     quantita integer,
     ordinato boolean,
 
     foreign key (user_id) references users(id),
-    foreign key (cibo_id) references cibo(id)
+    foreign key (products_id) references products(id)
 );

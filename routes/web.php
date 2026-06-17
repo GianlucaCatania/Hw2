@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('login', [LoginController::class, 'showLoginForm']);
 Route::post('login', [LoginController::class, 'checkLogin']);
@@ -15,3 +16,8 @@ Route::get('check_username', [RegisterController::class, 'checkUsername']);
 Route::get('check_email', [RegisterController::class, 'checkEmail']);
 
 Route::get('home', [HomeController::class, 'showHomePage']);
+Route::get('api/products', [HomeController::class, 'getProducts']);
+Route::get('api/macro', [HomeController::class, 'getMacro']);
+
+Route::get('profile', [ProfileController::class, 'showProfile']); 
+Route::post('profile', [ProfileController::class, 'updateProfile']); 

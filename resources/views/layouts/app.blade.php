@@ -21,7 +21,7 @@
                 </div>
                 <div class="user-links">
                     @if(session('user_id') != null)
-                        <a href="{{ url('home') }}" id='account-label'>Profilo ({{ session('username') }})</a>
+                        <a href="{{ url('profile') }}" id='account-label'>Profilo ({{ session('username') }})</a>
                         <a href="{{ url('logout') }}" id='logout-label'>Esci dalla sessione</a>
                     @else
                         <a href="{{ url('login') }}" id='account-label'>Login</a>

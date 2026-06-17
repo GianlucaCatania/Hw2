@@ -5,6 +5,10 @@
 @section('scripts')
     <link rel="stylesheet" href="{{ asset('style_home.css') }}">
     <script src="{{ asset('script_home.js') }}" defer></script>
+    <script>
+        const load_database_url = "{{ url('api/products') }}";
+        const macro_api_url = "{{ url('api/macro') }}";
+    </script>
 @endsection
 
 @section('content')

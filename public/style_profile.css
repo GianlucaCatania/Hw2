@@ -1,0 +1,184 @@
+body {
+    background-color: #ffffff;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #202124;
+}
+
+header nav {
+    background-color: #ffffff;
+    border-bottom: 3px solid #f9f6f2;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 13.5%;
+    border-bottom: 1px solid #eaeaea;
+}
+
+#logo a {
+    font-family: 'Oswald', sans-serif;
+    color: #E4002B;
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    text-decoration: none;
+}
+
+#links a {
+    margin: 15px;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #000000;
+}
+
+#links a:hover {
+    color: #E4002B;
+}
+
+#links #button {
+    background-color: #E4002B;
+    padding: 8px 20px;
+    border-radius: 0;
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+#links #button:hover {
+    background-color: #9b2027;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 13.5% 20px 13.5%;
+}
+
+.userInfo h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 38px;
+    text-transform: uppercase;
+    color: #202124;
+    margin: 0 0 5px 0;
+    text-align: left;
+}
+
+form[name='profile'] {
+    width: 75%;
+    margin: 30px auto 30px auto  ;
+
+    background-color: #ffffff;
+    border: 3px solid #f9f6f2;
+    padding: 30px 40px; 
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.col-left, .col-right {
+    width: 48%; 
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 15px;
+    color: #202124; 
+    margin-bottom: 3px;
+    text-align: left; 
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 8px 10px; 
+    margin-bottom: 12px; 
+    border: 2px solid #dcdcdc;
+    border-radius: 0;
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    background-color: #faf7f3;
+    color: #202124;
+    height: 35px;
+}
+
+#submit {
+    background-color: #E4002B;
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    font-size: 17px;
+    height: auto;
+    margin-top: 15px;
+}
+
+#submit:hover {
+    background-color: #9b2027; 
+}
+
+.hidden {
+    display: none;
+}
+
+.error-line {
+    color: #E4002B;
+    font-weight: 700;
+    font-size: 14px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f3fdf2;
+    border-left : 3px solid #E4002B;
+    width: 100%;
+}
+
+.success-line {
+    font-weight: 700;
+    font-size: 14px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0ffeb;
+    width: 100%;
+    border-left: 3px solid #1e8e3e;
+    color: #1e8e3e;
+}
+
+@media (max-width: 750px) {
+    #links {
+        display: none;
+    }
+    
+    .nav-container, .userInfo {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    form[name='profile'] {
+        width: 90%;
+        padding: 20px;
+        flex-direction: column;
+    }
+    
+    .col-left, .col-right {
+        width: 100%;
+    }
+}

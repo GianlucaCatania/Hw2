@@ -60,6 +60,8 @@ function deselezionaIcona(event) {
 
 function onJson(json) {
 
+    console.log("Dati ricevuti dall'API:", json);
+
     const container = document.createElement('div');
     
     if (json !== null) {
@@ -125,7 +127,7 @@ function elaboraClick(event) {
     const ingredienti = event.currentTarget.dataset.macro;
     const ingredientiCodificati = encodeURIComponent(ingredienti);
 
-    const rest_url = 'macro.php?ingr=' + ingredientiCodificati;
+    const rest_url = macro_api_url + '?ingr=' + ingredientiCodificati;
     fetch(rest_url).then(onResponse).then(onJson);
 }
 
@@ -214,8 +216,7 @@ function onCibiJson(json) {
     }
 }
 
-fetch("load_database.php").then(onResponse).then(onCibiJson);
-fetch("load_database.php").then(onResponse).then(onCibiJson);
+fetch(load_database_url).then(onResponse).then(onCibiJson);
 
 
 
