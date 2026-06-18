@@ -66,7 +66,7 @@ function checkUsername() {
         mostraErrore("Lo username deve essere compreso tra 1 e 15 caratteri");
     } else {
         nascondiErrore();
-        fetch("check_username.php?q="+encodeURIComponent(input.value)).then(fetchResponse).then(jsonCheckUsername);
+        fetch(check_username_url + "?q="+encodeURIComponent(input.value)).then(fetchResponse).then(jsonCheckUsername);
     }    
 }
 
@@ -77,7 +77,7 @@ function checkEmail() {
         formStatus.email = false;
     } else {
         nascondiErrore();
-        fetch("check_email.php?q="+encodeURIComponent(emailInput.value.toLowerCase())).then(fetchResponse).then(jsonCheckEmail);
+        fetch(check_email_url+ "?q="+encodeURIComponent(emailInput.value.toLowerCase())).then(fetchResponse).then(jsonCheckEmail);
     }
 }
 

@@ -8,6 +8,7 @@
         
         <title>KFC - @yield('title')</title>
 
+        @yield('styles')
         @yield('scripts')
     </head>
     <body>

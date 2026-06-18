@@ -1,14 +1,36 @@
-
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('title', 'Profilo di ' . $user->name)
 
+@section('styles')
+    <link rel="stylesheet" href="{{ url('style_profile.css') }}">
+@endsection
+
 @section('scripts')
-    <link rel="stylesheet" href="{{ asset('style_profile.css') }}">
-    <script src="{{ asset('script_profile.js') }}" defer></script>
+    <script>
+        const check_username_url = "{{ url('check_username') }}";
+        const check_email_url = "{{ url('check_email') }}";
+    </script>
+    
 @endsection
 
 @section('content')
+
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div id="logo">
+                    <a href="{{ url('home') }}">KFC</a>
+                </div>
+
+                <div id="links">
+                    <a href="{{ url('cart') }}">CARRELLO</a>
+                    <a href="{{ url('logout') }}" id="button">LOGOUT</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
     <div class="userInfo">
         <h1>Il tuo profilo</h1>
     </div>
@@ -19,7 +41,6 @@
         <div class="col-left">
             <div class="name">
                 <label for='name'>NOME</label>
-                {{-- Usiamo {{ $var }} invece di echo --}}
                 <input type='text' name='name' value="{{ old('name', $user->name) }}">
             </div>
             
@@ -58,12 +79,14 @@
 
         <div class="error-line hidden"><span></span></div>
 
-        @if(session('error'))
-            <div class='error-line'><span>{{ session('error') }}</span></div>
+        @if(isset($error))
+            @foreach($error as $err)
+                <div class='error-line'><span>{{ $err }}</span></div>
+            @endforeach
         @endif
 
-        @if(session('success'))
-            <div class='success-line'><span>{{ session('success') }}</span></div>
+        @if(isset($success))
+            <div class='success-line'><span>{{ $success }}</span></div>
         @endif
 
         <input type="submit" value='SALVA MODIFICHE' id="submit">
