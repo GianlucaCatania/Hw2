@@ -2,12 +2,16 @@
 
 @section('title', 'I Prodotti')
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('style_home.css') }}">
+@endsection
+
 @section('scripts')
-    <link rel="stylesheet" href="{{ asset('style_home.css') }}">
     <script src="{{ asset('script_home.js') }}" defer></script>
     <script>
         const load_database_url = "{{ url('api/products') }}";
         const macro_api_url = "{{ url('api/macro') }}";
+        const add_cart_url = "{{ url('api/cart/add') }}";
     </script>
 @endsection
 

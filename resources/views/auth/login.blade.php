@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 @section('title', 'Accedi')
 
-@section('scripts')
+@section('styles')
     <link rel='stylesheet' href="{{ asset('style_login.css') }}">
 @endsection
 

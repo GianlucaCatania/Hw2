@@ -1,8 +1,11 @@
 @extends('layouts.auth')
 @section('title', 'Registrati')
 
-@section('scripts')
+@section('styles')
     <link rel='stylesheet' href="{{ url('style_register.css') }}">
+@endsection
+
+@section('scripts')
     <script src="{{ url('script_register.js') }}" defer></script>
     <script>
         const check_username_url = "{{ url('check_username') }}";

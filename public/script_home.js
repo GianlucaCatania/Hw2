@@ -1,3 +1,5 @@
+const token = document.head.querySelector('meta[name="csrf-token"]').content;
+
 function noRefresh(event) {
     event.preventDefault(); 
 }
@@ -237,9 +239,10 @@ function addToCart(event) {
     const formData = new FormData();
     formData.append('id_cibo', foodId); 
 
-    fetch("add_cart.php", {
+    fetch(add_cart_url, {
         method: 'POST',
-        body: formData
+        body: formData,
+        headers: {'X-CSRF-TOKEN': token}
     })
     .then(onResponse).then(function(data) {
 

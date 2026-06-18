@@ -1,0 +1,132 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Cart;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Http;
+
+class CartController extends Controller {
+
+    public function showCart() {
+        if (!Session::has('user_id')) {
+            return redirect('login');
+        }
+        return view('cart');
+    }
+
+    public function loadCart() {
+        if (!Session::has('user_id')) {
+            return response()->json(['ok' => false, 'errore' => 'Non autorizzato']);
+        } 
+        
+        $userId = Session::get('user_id');
+
+        $cibi = Cart::join('products', 'cart.products_id', '=', 'products.id')
+                    ->where('cart.user_id', $userId)
+                    ->where('cart.ordinato', 0)
+                    ->select('products.name', 'products.image', 'cart.quantita', 'products.price', 'products.id')
+                    ->get();
+
+        return response()->json($cibi);
+    }
+
+    public function addCart(Request $request) {
+
+        if (!Session::has('user_id')) {
+            return response()->json(['ok' => false]);
+        }
+        
+        $userId = Session::get('user_id');
+        $idCibo = $request->id_cibo;
+
+        $cartItem = Cart::where('user_id', $userId)
+                        ->where('products_id', $idCibo)
+                        ->where('ordinato', 0)
+                        ->first();
+
+        if ($cartItem) {
+            $cartItem->quantita += 1;
+            $cartItem->save();
+        } else {
+            $newItem = new Cart();
+            $newItem->user_id = $userId;
+            $newItem->products_id = $idCibo;
+            $newItem->quantita = 1;
+            $newItem->ordinato = 0;
+            $newItem->save();
+        }
+
+        return response()->json(['ok' => true]);
+    }
+
+    public function removeCart(Request $request) {
+
+        if (!Session::has('user_id')) {
+             return response()->json(['ok' => false]);
+        }
+        
+        $userId = Session::get('user_id');
+        $idCibo = $request->id_cibo;
+
+        $cartItem = Cart::where('user_id', $userId)
+                        ->where('products_id', $idCibo)
+                        ->where('ordinato', 0)
+                        ->first();
+
+        if ($cartItem) {
+            if ($cartItem->quantita > 1) {
+                $cartItem->quantita -= 1;
+                $cartItem->save();
+            } else {
+                $cartItem->delete();
+            }
+        }
+
+        return response()->json(['ok' => true]);
+    }
+
+    public function deleteCart(Request $request) {
+
+        if (!Session::has('user_id')) {
+            return response()->json(['ok' => false]);
+        }
+        
+        $userId = Session::get('user_id');
+        Cart::where('user_id', $userId)
+                ->where('products_id', $request->id_cibo)
+                ->where('ordinato', 0)
+                ->delete();
+
+        return response()->json(['ok' => true]);
+    }
+
+    public function orderCart() {
+
+        if (!Session::has('user_id')) {
+            return response()->json(['ok' => false]);
+        }
+        
+        $userId = Session::get('user_id');
+
+        Cart::where('user_id', $userId)
+                ->where('ordinato', 0)
+                ->update(['ordinato' => 1]);
+
+        return response()->json(['ok' => true]);
+    }
+
+    public function payCart(Request $request) {
+
+        if (!Session::has('user_id')) {
+            return response()->json(['ok' => false]);
+        }
+
+        $response = Http::asForm()->post('https://httpbin.org/post', [
+            'importo' => $request->importo
+        ]);
+
+        return response()->json($response->json());
+    }
+}

@@ -5,6 +5,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CartController;
+
+Route::get('/', [HomeController::class, 'showHomePage']);
 
 Route::get('login', [LoginController::class, 'showLoginForm']);
 Route::post('login', [LoginController::class, 'checkLogin']);
@@ -21,3 +24,11 @@ Route::get('api/macro', [HomeController::class, 'getMacro']);
 
 Route::get('profile', [ProfileController::class, 'showProfile']); 
 Route::post('profile', [ProfileController::class, 'updateProfile']); 
+
+Route::get('cart', [CartController::class, 'showCart']);
+Route::get('api/cart/load', [CartController::class, 'loadCart']);
+Route::post('api/cart/add', [CartController::class, 'addCart']);
+Route::post('api/cart/remove', [CartController::class, 'removeCart']);
+Route::post('api/cart/delete', [CartController::class, 'deleteCart']);
+Route::get('api/cart/order', [CartController::class, 'orderCart']);
+Route::post('api/cart/pay', [CartController::class, 'payCart']);

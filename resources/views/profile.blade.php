@@ -11,7 +11,6 @@
         const check_username_url = "{{ url('check_username') }}";
         const check_email_url = "{{ url('check_email') }}";
     </script>
-    
 @endsection
 
 @section('content')

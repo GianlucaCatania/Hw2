@@ -6,6 +6,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title>KFC - @yield('title')</title>
 
         @yield('styles')

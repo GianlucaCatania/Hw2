@@ -1,0 +1,231 @@
+.contenitore-carrello {
+    margin-top: 130px;
+    padding: 40px 13.5%;
+    background-color: #ffffff;
+}
+
+.titolo-carrello {
+    font-family: 'Oswald', sans-serif;
+    font-size: 40px;
+    color: #202124;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    border-bottom: 3px solid #f9f6f2;
+    padding-bottom: 15px;
+}
+
+.layout-carrello {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.lista-prodotti {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+.prodotto-carrello {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border: 3px solid #f9f6f2;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+.immagine-prodotto {
+    width: 120px;
+    height: 120px;
+    background-color: #faf7f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.immagine-prodotto img {
+    width: 80%;
+}
+
+.info-prodotto {
+    flex-grow: 1;
+    padding-left: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nome-prodotto {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    color: #202124;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+}
+
+.quantita-prodotto {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #cdc0b9;
+    margin: 0;
+}
+
+.prezzo-prodotto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 15px;
+}
+
+.prezzo-prodotto p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    color: #E4002B;
+    font-weight: 700;
+    margin: 0;
+}
+
+.btn-rimuovi {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    color: #cdc0b9;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
+.btn-rimuovi:hover {
+    color: #E4002B;
+}
+
+/* .azioni-lista {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+} */
+
+.riepilogo-ordine {
+    width: 28%;
+    background-color: #faf7f3;
+    border: 3px solid #f9f6f2;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.riepilogo-ordine h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    color: #202124;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 15px;
+}
+
+.riga-totale {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #202124;
+    margin-bottom: 30px;
+}
+
+.cifra-totale {
+    font-family: 'Oswald', sans-serif;
+    font-size: 26px;
+    color: #E4002B;
+}
+
+.bottone-paga {
+    background-color: #E4002B;
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    font-size: 18px;
+}
+
+.bottone-paga:hover {
+    background-color: #9b2027; 
+}
+
+#risultato-pagamento {
+    margin-top: 15px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.sezione-quantita {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.btn-quantita {
+    text-decoration: none;
+    background-color: #f9f6f2;
+    color: #202124;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.btn-quantita:hover {
+    background-color: #E4002B;
+    color: white;
+}
+
+.carrello-vuoto {
+    text-align: center;
+}
+
+@media (max-width: 750px) {
+    .contenitore-carrello {
+        padding: 20px 5%;
+        margin-top: 105px;
+    }
+    
+    .layout-carrello {
+        flex-direction: column;
+    }
+    
+    .lista-prodotti, .riepilogo-ordine {
+        width: 100%;
+    }
+    
+    .riepilogo-ordine {
+        margin-top: 30px;
+    }
+    
+    .prodotto-carrello {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .info-prodotto {
+        padding-left: 0;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
