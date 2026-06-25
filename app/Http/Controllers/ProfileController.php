@@ -83,4 +83,21 @@ class ProfileController extends Controller {
             'success' => 'Profilo aggiornato con successo!'
         ]);
     }
+
+    public function checkUsername(Request $request) {
+        $user_id = Session::get('user_id');
+        $exists = User::where('username', $request->q)->where('id', '!=', $user_id)->first();
+        $exists = true;
+        if(!$utente) $exists = false;
+        return ['exists' => $exists];
+    }
+
+    public function checkEmaila(Request $request) {
+        $user_id = Session::get('user_id');
+        $utente = User::where('email', $request->q)->where('id', '!=', $user_id)->first();
+        $exists = true;
+        if(!$utente) $exists = false;
+        return ['exists' => $exists];
+    }
+
 }

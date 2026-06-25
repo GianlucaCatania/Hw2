@@ -8,8 +8,8 @@
 @section('scripts')
     <script src="{{ url('script_register.js') }}" defer></script>
     <script>
-        const check_username_url = "{{ url('check_username') }}";
-        const check_email_url = "{{ url('check_email') }}";
+        const check_username_url = "{{ url('check_username_register') }}";
+        const check_email_url = "{{ url('check_email_register') }}";
     </script>
 @endsection
 

@@ -9,8 +9,8 @@
 @section('scripts')
     <script src="{{ url('script_profile.js') }}" defer></script>
     <script>
-        const check_username_url = "{{ url('check_username') }}";
-        const check_email_url = "{{ url('check_email') }}";
+        const check_username_url = "{{ url('check_username_profile') }}";
+        const check_email_url = "{{ url('check_email_profile') }}";
     </script>
 @endsection
 
