@@ -8,4 +8,8 @@ class User extends Model
 {
     protected $table = 'users'; 
     public $timestamps = false;
+
+    public function carts() {
+        return $this->hasMany(Cart::class);
+    }
 }

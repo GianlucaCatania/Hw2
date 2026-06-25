@@ -105,7 +105,7 @@ function onCarrelloJson(json) {
             btnMeno.textContent = "-";
             btnMeno.href = "#";
             btnMeno.classList.add('btn-quantita'); 
-            btnMeno.dataset.id = cibo.id;
+            btnMeno.dataset.id = cibo.product_id;
             btnMeno.addEventListener('click', gestisciRimozione);
             btnMeno.addEventListener('click', noRefresh);
 
@@ -113,7 +113,7 @@ function onCarrelloJson(json) {
             btnPiu.textContent = "+";
             btnPiu.href = "#";
             btnPiu.classList.add('btn-quantita'); 
-            btnPiu.dataset.id = cibo.id;
+            btnPiu.dataset.id = cibo.product_id;
             btnPiu.addEventListener('click', gestisciAggiunta);
             btnPiu.addEventListener('click', noRefresh);
 
@@ -134,7 +134,7 @@ function onCarrelloJson(json) {
             btnRimuovi.href = "#"; 
             btnRimuovi.classList.add('btn-rimuovi'); 
             btnRimuovi.textContent = "Rimuovi"; 
-            btnRimuovi.dataset.id = cibo.id; 
+            btnRimuovi.dataset.id = cibo.product_id; 
             btnRimuovi.addEventListener('click', gestisciEliminazione);
             btnRimuovi.addEventListener('click', noRefresh);
 

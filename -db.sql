@@ -37,10 +37,10 @@ INSERT INTO products (category, name, image, macro, price) VALUES
 CREATE TABLE cart (
     id integer primary key auto_increment,
     user_id integer not null,
-    products_id integer not null,
+    product_id integer not null,
     quantita integer,
     ordinato boolean,
 
     foreign key (user_id) references users(id),
-    foreign key (products_id) references products(id)
+    foreign key (product_id) references products(id)
 );

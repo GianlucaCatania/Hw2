@@ -2,7 +2,7 @@
 @section('title', 'Accedi')
 
 @section('styles')
-    <link rel='stylesheet' href="{{ asset('style_login.css') }}">
+    <link rel='stylesheet' href="{{ url('style_login.css') }}">
 @endsection
 
 @section('header')

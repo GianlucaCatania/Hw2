@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Http;
 
@@ -21,13 +22,16 @@ class CartController extends Controller {
             return response()->json(['ok' => false, 'errore' => 'Non autorizzato']);
         } 
         
-        $userId = Session::get('user_id');
+        $user_id = Session::get('user_id');
 
-        $cibi = Cart::join('products', 'cart.products_id', '=', 'products.id')
-                    ->where('cart.user_id', $userId)
-                    ->where('cart.ordinato', 0)
-                    ->select('products.name', 'products.image', 'cart.quantita', 'products.price', 'products.id')
-                    ->get();
+        $user = User::find($user_id);
+        $cibi = $user->carts()->where('ordinato', 0)->get();
+
+        foreach ($cibi as $cibo) {
+            $cibo->name = $cibo->product->name;
+            $cibo->image = $cibo->product->image;
+            $cibo->price = $cibo->product->price;
+        }
 
         return response()->json($cibi);
     }
@@ -38,21 +42,19 @@ class CartController extends Controller {
             return response()->json(['ok' => false]);
         }
         
-        $userId = Session::get('user_id');
+        $user_id = Session::get('user_id');
         $idCibo = $request->id_cibo;
 
-        $cartItem = Cart::where('user_id', $userId)
-                        ->where('products_id', $idCibo)
-                        ->where('ordinato', 0)
-                        ->first();
+        $user = User::find($user_id);
+        $cartItem = $user->carts()->where('product_id', $idCibo)->where('ordinato', 0)->first();
 
         if ($cartItem) {
             $cartItem->quantita += 1;
             $cartItem->save();
         } else {
             $newItem = new Cart();
-            $newItem->user_id = $userId;
-            $newItem->products_id = $idCibo;
+            $newItem->user_id = $user_id;
+            $newItem->product_id = $idCibo;
             $newItem->quantita = 1;
             $newItem->ordinato = 0;
             $newItem->save();
@@ -66,14 +68,12 @@ class CartController extends Controller {
         if (!Session::has('user_id')) {
              return response()->json(['ok' => false]);
         }
-        
-        $userId = Session::get('user_id');
+
+        $user_id = Session::get('user_id');
         $idCibo = $request->id_cibo;
 
-        $cartItem = Cart::where('user_id', $userId)
-                        ->where('products_id', $idCibo)
-                        ->where('ordinato', 0)
-                        ->first();
+        $user = User::find($user_id);
+        $cartItem = $user->carts()->where('product_id', $idCibo)->where('ordinato', 0)->first();
 
         if ($cartItem) {
             if ($cartItem->quantita > 1) {
@@ -92,12 +92,16 @@ class CartController extends Controller {
         if (!Session::has('user_id')) {
             return response()->json(['ok' => false]);
         }
-        
-        $userId = Session::get('user_id');
-        Cart::where('user_id', $userId)
-                ->where('products_id', $request->id_cibo)
-                ->where('ordinato', 0)
-                ->delete();
+    
+        $user_id = Session::get('user_id');
+        $idCibo = $request->id_cibo;
+
+        $user = User::find($user_id);
+        $cartItem = $user->carts()->where('product_id', $idCibo)->where('ordinato', 0)->first();
+
+        if ($cartItem) {
+            $cartItem->delete();
+        }
 
         return response()->json(['ok' => true]);
     }
@@ -108,11 +112,15 @@ class CartController extends Controller {
             return response()->json(['ok' => false]);
         }
         
-        $userId = Session::get('user_id');
+        $user_id = Session::get('user_id');
 
-        Cart::where('user_id', $userId)
-                ->where('ordinato', 0)
-                ->update(['ordinato' => 1]);
+        $user = User::find($user_id);
+        $elementiCarrello = $user->carts()->where('ordinato', 0)->get();
+
+        foreach ($elementiCarrello as $elemento) {
+            $elemento->ordinato = 1;
+            $elemento->save();
+        }
 
         return response()->json(['ok' => true]);
     }

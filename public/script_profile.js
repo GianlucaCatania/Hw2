@@ -1,3 +1,5 @@
+console.log("ciao");
+
 function mostraErrore(messaggio) {
     const errorBox = document.querySelector('.error-line');
     const errorSpan = errorBox.querySelector('span');
@@ -73,7 +75,7 @@ function checkUsername() {
 function checkEmail() {
     const emailInput = document.querySelector('.email input');
     if(emailInput.value.length === 0) {
-        mostraErrore("Email non valida");
+        mostraErrore("JS: Email non valida");
         formStatus.email = false;
     } else {
         nascondiErrore();

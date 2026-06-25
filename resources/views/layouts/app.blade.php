@@ -37,7 +37,7 @@
                 <div class="container-nav">
                     <div class="main-nav-left-group">
                         <div class="logo">
-                            <a href = "{{ url('home') }}"><img src="{{ asset('img/logo.png') }}"></a>
+                            <a href = "{{ url('home') }}"><img src="{{ url('img/logo.png') }}"></a>
                         </div>
 
                         <div class="nav-menu">
@@ -50,13 +50,13 @@
 
                     <div class="nav-actions">
                         <div class="find-img">
-                            <img src="{{ asset('img/icon-location.png') }}">
+                            <img src="{{ url('img/icon-location.png') }}">
                         </div>
                         <a href="#">Trova un ristorante</a>
                         <a href="{{ url('cart') }}" id="order-link">ORDINA ORA</a>
 
                         <div class="mobile-menu">
-                            <a href="#"><img src="{{ asset('img/menu.png') }}"></a>
+                            <a href="#"><img src="{{ url('img/menu.png') }}"></a>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="privacy-checkbox">
-                    <img src="{{ asset('img/check_box_unchecked.png') }}">
+                    <img src="{{ url('img/check_box_unchecked.png') }}">
                     <p>Ho preso visione <a href="#">dell'informativa privacy</a>*</p>
                 </div>
             </section>
@@ -99,11 +99,11 @@
         <footer>
             <div class="social-icons">
                 <p>Seguici su</p>
-                <a href="#"><img src="{{ asset('img/facebook.png') }}"></a>
-                <a href="#"><img src="{{ asset('img/instagram.png') }}"></a>
-                <a href="#"><img src="{{ asset('img/youtube.png') }}"></a>
-                <a href="#"><img src="{{ asset('img/tiktok.png') }}"></a>
-                <a href="#"><img src="{{ asset('img/linkedin.png') }}"></a>
+                <a href="#"><img src="{{ url('img/facebook.png') }}"></a>
+                <a href="#"><img src="{{ url('img/instagram.png') }}"></a>
+                <a href="#"><img src="{{ url('img/youtube.png') }}"></a>
+                <a href="#"><img src="{{ url('img/tiktok.png') }}"></a>
+                <a href="#"><img src="{{ url('img/linkedin.png') }}"></a>
             </div>
 
             <div class="final-links">
