@@ -92,7 +92,7 @@ class ProfileController extends Controller {
         return ['exists' => $exists];
     }
 
-    public function checkEmaila(Request $request) {
+    public function checkEmail(Request $request) {
         $user_id = Session::get('user_id');
         $utente = User::where('email', $request->q)->where('id', '!=', $user_id)->first();
         $exists = true;

@@ -18,9 +18,7 @@ Route::post('register', [RegisterController::class, 'createUser']);
 Route::get('check_username_register', [RegisterController::class, 'checkUsername']);
 Route::get('check_email_register', [RegisterController::class, 'checkEmail']);
 Route::get('check_username_profile', [ProfileController::class, 'checkUsername']);
-Route::get('check_email_profile', [ProfileController::class, 'checkEmaila']);
-
-
+Route::get('check_email_profile', [ProfileController::class, 'checkEmail']);
 
 Route::get('home', [HomeController::class, 'showHomePage']);
 Route::get('api/products', [HomeController::class, 'getProducts']);
