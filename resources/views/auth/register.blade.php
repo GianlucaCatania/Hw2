@@ -30,29 +30,29 @@
                 <div class="col-left">
                     <div class="name">
                         <label for='name'>NOME</label>
-                        <input type='text' id='name' name='name'>
+                        <input type='text' id='name' name='name' value="{{ old('name') }}">
                     </div>
                     
                     <div class="surname">
                         <label for='surname'>COGNOME</label>
-                        <input type='text' id='surname' name='surname'>
+                        <input type='text' id='surname' name='surname' value="{{ old('surname') }}">
                     </div>
 
                     <div class="username">
                         <label for='username'>NOME UTENTE</label>
-                        <input type='text' id='username' name='username'>
+                        <input type='text' id='username' name='username' value="{{ old('username') }}">
                     </div>
                 </div>
 
                 <div class="col-right">
                     <div class="email">
                         <label for='email'>EMAIL</label>
-                        <input type='text' id='email' name='email'>
+                        <input type='text' id='email' name='email' value="{{ old('email') }}">
                     </div>
                     
                     <div class="password">
                         <label for='password'>PASSWORD</label>
-                        <input type='password' id='password' name='password'>
+                        <input type='password' id='password' name='password' >
                     </div>
                     
                     <div class="confirm_password">
@@ -67,9 +67,9 @@
                 <label for='allow_check'>ACCETTO I TERMINI E CONDIZIONI D'USO DI KFC.</label>
             </div>
             
-            @if (isset($error))
-                @foreach ($error as $err)
-                    <div class='error-line'><span>{{ $err }}</span></div>
+            @if(isset($errors))
+                @foreach ($errors->all() as $error)
+                    <div class='error-line'><span>{{ $error }}</span></div>
                 @endforeach
             @endif
 

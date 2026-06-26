@@ -79,9 +79,9 @@
 
         <div class="error-line hidden"><span></span></div>
 
-        @if(isset($error))
-            @foreach($error as $err)
-                <div class='error-line'><span>{{ $err }}</span></div>
+        @if(isset($errors))
+            @foreach($errors->all() as $error)
+                <div class='error-line'><span>{{ $error }}</span></div>
             @endforeach
         @endif
 

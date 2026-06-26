@@ -17,36 +17,39 @@ class RegisterController extends Controller {
 
     public function createUser(Request $request) {
 
-        $error = [];
+        $errors = [];
 
         if (empty($request->name) || empty($request->surname) || empty($request->username) || 
             empty($request->email) || empty($request->password) || empty($request->confirm_password) || 
             empty($request->allow)) {
-            $error[] = "Riempi tutti i campi";
+            $errors[] = "Riempi tutti i campi";
+
         } else {
             if (strlen($request->username) > 15) {
-                $error[] = "Lo username deve essere compreso tra 1 e 15 caratteri";
+                $errors[] = "Lo username deve essere compreso tra 1 e 15 caratteri";
             } else if (User::where('username', $request->username)->first()) {
-                $error[] = "Username già utilizzato";
+                $errors[] = "Username già utilizzato";
             }
 
             if (strlen($request->password) < 8) {
-                $error[] = "La password deve essere di almeno 8 caratteri";
+                $errors[] = "La password deve essere di almeno 8 caratteri";
             } 
 
             if ($request->password !== $request->confirm_password) {
-                $error[] = "Le password non coincidono";
+                $errors[] = "Le password non coincidono";
             }
 
             if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-                $error[] = "Email non valida";
+                $errors[] = "Email non valida";
             } else if (User::where('email', $request->email)->first()) {
-                $error[] = "Email già utilizzata";
+                $errors[] = "Email già utilizzata";
             }
         }
 
-        if (count($error) > 0) {
-            return view('auth.register', ['error' => $error]);
+        if (count($errors) > 0) {
+            return redirect('register')
+                ->withInput()
+                ->withErrors($errors);
         }
 
         $user = new User;

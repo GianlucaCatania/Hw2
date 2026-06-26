@@ -17,8 +17,7 @@ class ProfileController extends Controller {
         $user = User::find(Session::get('user_id'));
 
         return view('profile', [
-            'user' => $user,
-            'auth' => true,
+            'user' => $user
         ]);
     }
 
@@ -28,45 +27,38 @@ class ProfileController extends Controller {
         }
 
         $user = User::find(Session::get('user_id'));
-        $errori = []; 
+        $errors = []; 
 
         if (empty($request->name)) {
-            $errori['name'] = 'Il nome non può essere vuoto';
+            $errors['name'] = 'Il nome non può essere vuoto';
         }
         if (empty($request->surname)) {
-            $errori['surname'] = 'Il cognome non può essere vuoto';
+            $errors['surname'] = 'Il cognome non può essere vuoto';
         }
         if (empty($request->username)) {
-            $errori['username'] = 'Lo username non può essere vuoto';
+            $errors['username'] = 'Lo username non può essere vuoto';
         }
         if (empty($request->email) || !filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-            $errori['email'] = 'Email non valida';
+            $errors['email'] = 'Email non valida';
         }
 
         if (!empty($request->old_password) || !empty($request->password) || !empty($request->confirm_password)) {
             
             if (empty($request->old_password) || !password_verify($request->old_password, $user->password)) {
-                $errori['old_password'] = 'La vecchia password inserita non è corretta o mancante';
+                $errors['old_password'] = 'La vecchia password inserita non è corretta o mancante';
             } elseif (empty($request->password) || strlen($request->password) < 4) {
-                $errori['password'] = 'La nuova password deve avere almeno 4 caratteri';
+                $errors['password'] = 'La nuova password deve avere almeno 4 caratteri';
             } elseif ($request->password !== $request->confirm_password) {
-                $errori['confirm_password'] = 'Le nuove password non coincidono';
+                $errors['confirm_password'] = 'Le nuove password non coincidono';
             } else {
                 $user->password = password_hash($request->password, PASSWORD_BCRYPT);
             }
         }
 
-        if (count($errori) > 0) {
-            $user->name = $request->name;
-            $user->surname = $request->surname;
-            $user->username = $request->username;
-            $user->email = $request->email;
-
-            return view('profile', [
-                'user' => $user, 
-                'auth' => true, 
-                'error' => $errori
-            ]);
+        if (count($errors) > 0) {
+            return redirect('profile')
+                ->withInput()
+                ->withErrors($errors);
         }
 
         $user->name = $request->name;
@@ -79,7 +71,6 @@ class ProfileController extends Controller {
         
         return view('profile', [
             'user' => $user, 
-            'auth' => true, 
             'success' => 'Profilo aggiornato con successo!'
         ]);
     }
