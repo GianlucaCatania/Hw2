@@ -17,8 +17,6 @@ Route::get('register', [RegisterController::class, 'showRegisterForm']);
 Route::post('register', [RegisterController::class, 'createUser']);
 Route::get('check_username_register', [RegisterController::class, 'checkUsername']);
 Route::get('check_email_register', [RegisterController::class, 'checkEmail']);
-Route::get('check_username_profile', [ProfileController::class, 'checkUsername']);
-Route::get('check_email_profile', [ProfileController::class, 'checkEmail']);
 
 Route::get('home', [HomeController::class, 'showHomePage']);
 Route::get('api/products', [HomeController::class, 'getProducts']);
@@ -26,6 +24,8 @@ Route::get('api/macro', [HomeController::class, 'getMacro']);
 
 Route::get('profile', [ProfileController::class, 'showProfile']); 
 Route::post('profile', [ProfileController::class, 'updateProfile']); 
+Route::get('check_username_profile', [ProfileController::class, 'checkUsername']);
+Route::get('check_email_profile', [ProfileController::class, 'checkEmail']);
 
 Route::get('cart', [CartController::class, 'showCart']);
 Route::get('api/cart/load', [CartController::class, 'loadCart']);

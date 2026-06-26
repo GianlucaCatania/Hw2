@@ -17,7 +17,7 @@ class RegisterController extends Controller {
 
     public function createUser(Request $request) {
 
-    $error = [];
+        $error = [];
 
         if (empty($request->name) || empty($request->surname) || empty($request->username) || 
             empty($request->email) || empty($request->password) || empty($request->confirm_password) || 
@@ -26,7 +26,7 @@ class RegisterController extends Controller {
         } else {
             if (strlen($request->username) > 15) {
                 $error[] = "Lo username deve essere compreso tra 1 e 15 caratteri";
-            } else if (User::where('username', $request->username)->exists()) {
+            } else if (User::where('username', $request->username)->first()) {
                 $error[] = "Username già utilizzato";
             }
 
@@ -40,7 +40,7 @@ class RegisterController extends Controller {
 
             if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
                 $error[] = "Email non valida";
-            } else if (User::where('email', $request->email)->exists()) {
+            } else if (User::where('email', $request->email)->first()) {
                 $error[] = "Email già utilizzata";
             }
         }
@@ -64,12 +64,12 @@ class RegisterController extends Controller {
     }
 
     public function checkUsername(Request $request) {
-        $exists = User::where('username', $request->q)->exists();
+        $exists = User::where('username', $request->q)->first();
         return ['exists' => $exists];
     }
 
     public function checkEmail(Request $request) {
-        $exists = User::where('email', $request->q)->exists();
+        $exists = User::where('email', $request->q)->first();
         return ['exists' => $exists];
     }
 }

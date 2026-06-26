@@ -69,7 +69,7 @@
             
             @if (isset($error))
                 @foreach ($error as $err)
-                    <div class='error-line'><span>{{$err}}</span></div>
+                    <div class='error-line'><span>{{ $err }}</span></div>
                 @endforeach
             @endif
 

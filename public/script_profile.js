@@ -21,7 +21,7 @@ function checkName() {
         nascondiErrore();
     }
     else {
-        mostraErrore("Il nome non può essere vuoto");
+        mostraErrore("JS: Il nome non può essere vuoto");
     }
 }
 
@@ -32,14 +32,14 @@ function checkSurname() {
         nascondiErrore();
     }
     else {
-        mostraErrore("Il cognome non può essere vuoto");
+        mostraErrore("JS: Il cognome non può essere vuoto");
     }
 }
 
 function jsonCheckUsername(json) {
     if (json.exists) {
         formStatus.username = false;
-        mostraErrore("Username già in uso");
+        mostraErrore("JS: Username già in uso");
     } else {
         formStatus.username = true;
         nascondiErrore();
@@ -49,7 +49,7 @@ function jsonCheckUsername(json) {
 function jsonCheckEmail(json) {
     if (json.exists) {
         formStatus.email = false;
-        mostraErrore("Email già utilizzata");
+        mostraErrore("JS: Email già utilizzata");
     } else {
         formStatus.email = true;
         nascondiErrore();
@@ -65,7 +65,7 @@ function checkUsername() {
     const input = document.querySelector('.username input');
     if(input.value.length === 0 || input.value.length > 15) {
         formStatus.username = false;
-        mostraErrore("Lo username deve essere compreso tra 1 e 15 caratteri");
+        mostraErrore("JS: Lo username deve essere compreso tra 1 e 15 caratteri");
     } else {
         nascondiErrore();
         fetch(check_username_url + "?q="+encodeURIComponent(input.value)).then(fetchResponse).then(jsonCheckUsername);
@@ -89,7 +89,7 @@ function checkPassword() {
     if (formStatus.password) {
             nascondiErrore();
     } else {
-        mostraErrore("La password deve avere almeno 8 caratteri");
+        mostraErrore("JS: La password deve avere almeno 8 caratteri");
     }
 }
 
@@ -100,7 +100,7 @@ function checkConfirmPassword() {
     if (formStatus.confirmPassword) {
         nascondiErrore();
     } else {
-        mostraErrore("Le password non coincidono");
+        mostraErrore("JS: Le password non coincidono");
     }
 }
 
@@ -110,7 +110,7 @@ function checkOldPassword() {
     
     if (newPasswordInput.value.length > 0 && oldPasswordInput.value.length === 0) {
         formStatus.oldPassword = false;
-        mostraErrore("Inserisci la vecchia password per confermare");
+        mostraErrore("JS: Inserisci la vecchia password per confermare");
     } else {
         formStatus.oldPassword = true;
     }

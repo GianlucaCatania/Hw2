@@ -11,7 +11,7 @@ class LoginController extends Controller {
     public function showLoginForm() {
         if (session('user_id') != null) {
             return redirect('home');
-        }  
+        }
         return view('auth.login');
     }
 

@@ -76,7 +76,7 @@ class ProfileController extends Controller {
         $user->save();
         
         Session(['username' => $user->username]);
-
+        
         return view('profile', [
             'user' => $user, 
             'auth' => true, 
@@ -86,7 +86,7 @@ class ProfileController extends Controller {
 
     public function checkUsername(Request $request) {
         $user_id = Session::get('user_id');
-        $exists = User::where('username', $request->q)->where('id', '!=', $user_id)->first();
+        $utente = User::where('username', $request->q)->where('id', '!=', $user_id)->first();
         $exists = true;
         if(!$utente) $exists = false;
         return ['exists' => $exists];
