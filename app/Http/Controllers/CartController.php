@@ -11,22 +11,23 @@ use Illuminate\Support\Facades\Http;
 class CartController extends Controller {
 
     public function showCart() {
-        if (!Session::has('user_id')) {
+        if (session('user_id') == null) {
             return redirect('login');
         }
         return view('cart');
     }
 
     public function loadCart() {
-        if (!Session::has('user_id')) {
-            return response()->json(['ok' => false, 'errore' => 'Non autorizzato']);
+
+        $user_id = session('user_id');
+
+        if ($user_id == null) {
+            return redirect('login');
         } 
-        
-        $user_id = Session::get('user_id');
 
         $user = User::find($user_id);
         $cibi = $user->carts()->where('ordinato', 0)->get();
-
+        
         foreach ($cibi as $cibo) {
             $cibo->name = $cibo->product->name;
             $cibo->image = $cibo->product->image;
@@ -38,14 +39,15 @@ class CartController extends Controller {
 
     public function addCart(Request $request) {
 
-        if (!Session::has('user_id')) {
-            return response()->json(['ok' => false]);
-        }
-        
-        $user_id = Session::get('user_id');
-        $idCibo = $request->id_cibo;
+        $user_id = session('user_id');
 
+        if ($user_id == null || $request == null) {
+            return redirect('login');
+        } 
+
+        $idCibo = $request->id_cibo;
         $user = User::find($user_id);
+        
         $cartItem = $user->carts()->where('product_id', $idCibo)->where('ordinato', 0)->first();
 
         if ($cartItem) {
@@ -64,15 +66,16 @@ class CartController extends Controller {
     }
 
     public function removeCart(Request $request) {
+        
+        $user_id = session('user_id');
 
-        if (!Session::has('user_id')) {
-             return response()->json(['ok' => false]);
-        }
+        if ($user_id == null || $request == null) {
+            return redirect('login');
+        } 
 
-        $user_id = Session::get('user_id');
         $idCibo = $request->id_cibo;
-
         $user = User::find($user_id);
+
         $cartItem = $user->carts()->where('product_id', $idCibo)->where('ordinato', 0)->first();
 
         if ($cartItem) {
@@ -89,14 +92,15 @@ class CartController extends Controller {
 
     public function deleteCart(Request $request) {
 
-        if (!Session::has('user_id')) {
-            return response()->json(['ok' => false]);
-        }
-    
-        $user_id = Session::get('user_id');
-        $idCibo = $request->id_cibo;
+        $user_id = session('user_id');
 
+        if ($user_id == null || $request == null) {
+            return redirect('login');
+        }     
+
+        $idCibo = $request->id_cibo;
         $user = User::find($user_id);
+
         $cartItem = $user->carts()->where('product_id', $idCibo)->where('ordinato', 0)->first();
 
         if ($cartItem) {
@@ -108,11 +112,11 @@ class CartController extends Controller {
 
     public function orderCart() {
 
-        if (!Session::has('user_id')) {
-            return response()->json(['ok' => false]);
-        }
-        
-        $user_id = Session::get('user_id');
+        $user_id = session('user_id');
+
+        if ($user_id == null || $request == null) {
+            return redirect('login');
+        } 
 
         $user = User::find($user_id);
         $elementiCarrello = $user->carts()->where('ordinato', 0)->get();
@@ -126,9 +130,11 @@ class CartController extends Controller {
     }
 
     public function payCart(Request $request) {
+        
+        $user_id = session('user_id');
 
-        if (!Session::has('user_id')) {
-            return response()->json(['ok' => false]);
+        if ($user_id == null || $request == null) {
+            return redirect('login');
         }
 
         $response = Http::asForm()->post('https://httpbin.org/post', [

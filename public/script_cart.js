@@ -1,17 +1,8 @@
 const token = document.head.querySelector('meta[name="csrf-token"]').content;
 
 function onJson(json) {
-    
-    const container = document.querySelector('#risultato-pagamento');
-    
     if (json !== null) {
         fetch(ORDER_URL).then(onResponse).then(ricaricaCarrello);
-    }
-    else {
-        const messaggio = document.createElement('h3');
-        messaggio.textContent = "Pagamento fallito!";
-        messaggio.style.color = "red"; 
-        container.appendChild(messaggio);
     }
 }
 

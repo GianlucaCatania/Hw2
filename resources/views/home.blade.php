@@ -71,4 +71,6 @@
             </article>
         </div>
     </div>
+
+    <section id="modale-risultati" class="hidden"></section>
 @endsection

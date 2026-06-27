@@ -547,6 +547,14 @@ footer {
     text-decoration: underline;
 }
 
+#account-img {
+    display: none;
+}
+
+#logout-img {
+    display: none;
+}
+
 @media (max-width: 750px) {
 
     .top-links {
@@ -593,7 +601,7 @@ footer {
     #order-link {
         position: absolute;
         top: 8px;
-        right: 65px;
+        right: 5px;
         padding: 12px 30px;
         font-size: 16px;
     }
@@ -602,11 +610,20 @@ footer {
         display: block;
         position: absolute;
         top: 14px;
-        right: 0px;
+        right: 150px;
     }
 
     .mobile-menu img {
+        display: inline;
         width: 33px;
+    }
+
+    #account-img {
+        display: inline;
+    }
+
+    #logout-img {
+        display: inline;
     }
 
     .main-container {

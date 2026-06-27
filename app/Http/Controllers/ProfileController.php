@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller {
     
     public function showProfile() {
 
-        if (!Session::has('user_id')) {
+        $user_id = session('user_id');
+
+        if ($user_id == null) {
             return redirect('login');
         }
 
-        $user = User::find(Session::get('user_id'));
+        $user = User::find($user_id);
 
         return view('profile', [
             'user' => $user
@@ -22,12 +23,15 @@ class ProfileController extends Controller {
     }
 
     public function updateProfile(Request $request) {
-        if (!Session::has('user_id')) {
+
+        $user_id = session('user_id');
+
+        if ($user_id == null) {
             return redirect('login');
         }
 
-        $user = User::find(Session::get('user_id'));
-        $errors = []; 
+        $user = User::find($user_id);
+        $errors = [];
 
         if (empty($request->name)) {
             $errors['name'] = 'Il nome non può essere vuoto';
@@ -67,7 +71,7 @@ class ProfileController extends Controller {
         $user->email = $request->email;
         $user->save();
         
-        Session(['username' => $user->username]);
+        session(['username' => $user->username]);
         
         return view('profile', [
             'user' => $user, 
@@ -76,19 +80,18 @@ class ProfileController extends Controller {
     }
 
     public function checkUsername(Request $request) {
-        $user_id = Session::get('user_id');
+        $user_id = session('user_id');
         $utente = User::where('username', $request->q)->where('id', '!=', $user_id)->first();
-        $exists = true;
-        if(!$utente) $exists = false;
+        $exists = false;
+        if($utente) $exists = true;
         return ['exists' => $exists];
     }
 
     public function checkEmail(Request $request) {
-        $user_id = Session::get('user_id');
+        $user_id = session('user_id');
         $utente = User::where('email', $request->q)->where('id', '!=', $user_id)->first();
-        $exists = true;
-        if(!$utente) $exists = false;
+        $exists = false;
+        if($utente) $exists = true;
         return ['exists' => $exists];
     }
-
 }

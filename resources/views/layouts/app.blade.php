@@ -56,7 +56,12 @@
                         <a href="{{ url('cart') }}" id="order-link">ORDINA ORA</a>
 
                         <div class="mobile-menu">
-                            <a href="#"><img src="{{ url('img/menu.png') }}"></a>
+                            @if(session('user_id') != null)
+                                <a href="{{ url('profile') }}" id="account-img"><img src="{{ url('img/account.png') }}"></a>
+                                <a href="{{ url('logout') }}" id="logout-img"><img src="{{ url('img/logout.png') }}"></a>
+                            @else
+                                <a href="{{ url('login') }}" id="account-img"><img src="{{ url('img/account.png') }}"></a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -130,6 +135,6 @@
             </div>
         </footer>
 
-        <section id="modale-risultati" class="hidden"></section>
+        
     </body>
 </html>

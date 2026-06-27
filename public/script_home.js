@@ -11,7 +11,10 @@ for (let link of links) {
         link.id !== 'login-label' && 
         link.id !== 'register-label' &&
         link.id !== 'account-label' &&
-        link.id !== 'logout-label') {
+        link.id !== 'logout-label' &&
+        link.id !== 'account-img' &&
+        link.id !== 'logout-img') {
+            
         link.addEventListener("click", noRefresh);
     }
 }

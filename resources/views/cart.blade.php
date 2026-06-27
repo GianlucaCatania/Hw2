@@ -10,6 +10,7 @@
 @section('scripts')
     <script>
         const CSRF_TOKEN = '{{ csrf_token() }}';
+
         const LOAD_CART_URL = '{{ url("api/cart/load") }}';
         const ADD_CART_URL = '{{ url("api/cart/add") }}';
         const REMOVE_CART_URL = '{{ url("api/cart/remove") }}';
@@ -39,8 +40,7 @@
                     @csrf
                     <input type="submit" class="bottone-paga" value="CONFERMA ORDINE E PAGA">
                 </form>
-
-                <div id="risultato-pagamento"></div>
+                
             </div>
         </div>
     </div>
