@@ -23,7 +23,7 @@
     <div id="container">
         <h1>CREA ACCOUNT</h1>
         
-        <form name='signup' method='post' action="{{ url('register') }}">
+        <form id ="form" name='signup' method='post' action="{{ url('register') }}">
             @csrf
             
             <div class="form-columns">
@@ -83,5 +83,3 @@
         <div class="login-link">HAI GIÀ UN ACCOUNT? <a href="{{ url('login') }}">ACCEDI</a></div>
     </div>
 @endsection
-
-

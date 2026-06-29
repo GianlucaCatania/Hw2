@@ -1,12 +1,11 @@
 body {
     background-color: #ffffff;
-    color: #202124;
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center; 
-    padding: 20px 5%; 
+    padding: 0px 13.5%; 
     height: 92%;
 }
 
@@ -63,10 +62,10 @@ label {
     text-align: left; 
 }
 
-input[type="text"], input[type="password"] {
-    width: 100%;
-    padding: 8px 10px; 
-    margin-bottom: 12px; 
+#name, #surname, #username, #email, #password, #confirm_password {
+    width: 95%;
+    padding: 5px 10px;
+    margin-bottom: 12px;
     border: 2px solid #dcdcdc;
     border-radius: 0;
     font-family: 'Roboto', sans-serif;
@@ -85,7 +84,7 @@ input[type="text"], input[type="password"] {
     border-top: 3px solid #f9f6f2;
 }
 
-.allow input[type="checkbox"] {
+.allow input {
     margin-right: 10px;
     width: 18px;
     height: 18px;
@@ -111,7 +110,6 @@ input[type="text"], input[type="password"] {
     border-radius: 0;
     width: 100%;
     font-size: 17px;
-    height: auto;
 }
 
 #submit:hover {
@@ -126,10 +124,10 @@ input[type="text"], input[type="password"] {
     align-items: center;
     justify-content: flex-start;
     margin-bottom: 8px;
-    padding: 8px 0px;
+    padding: 8px 8px;
     background-color: #fdf2f2;
     border-left: 3px solid #E4002B;
-    width: 100%;
+    width: 98%;
 }
 
 .hidden {
@@ -160,3 +158,18 @@ input[type="text"], input[type="password"] {
     text-decoration: underline;
 }
 
+@media (max-width: 750px) {
+    
+    #container {
+        width: 100%;
+        padding: 20px 15px; 
+    }
+    
+    .form-columns {
+        flex-direction: column;
+    }
+    
+    .col-left, .col-right {
+        width: 100%;
+    }
+}

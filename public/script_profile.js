@@ -4,8 +4,21 @@ function mostraErrore(messaggio) {
     const errorBox = document.querySelector('.error-line');
     const errorSpan = errorBox.querySelector('span');
     
-    errorSpan.textContent = messaggio;
+    errorSpan.textContent = "JS: " + messaggio;
     errorBox.classList.remove('hidden');
+
+    const successBox = document.querySelector('.success-line');
+    const serverErrors = document.querySelectorAll('.server-error');
+
+    if (successBox) {
+        successBox.classList.add('hidden');
+    }
+
+    if (serverErrors) {
+        for (error of serverErrors) {
+            error.classList.add('hidden');
+        }
+    }    
 }
 
 function nascondiErrore() {
@@ -21,7 +34,7 @@ function checkName() {
         nascondiErrore();
     }
     else {
-        mostraErrore("JS: Il nome non può essere vuoto");
+        mostraErrore("Il nome non può essere vuoto");
     }
 }
 
@@ -32,14 +45,14 @@ function checkSurname() {
         nascondiErrore();
     }
     else {
-        mostraErrore("JS: Il cognome non può essere vuoto");
+        mostraErrore("Il cognome non può essere vuoto");
     }
 }
 
 function jsonCheckUsername(json) {
     if (json.exists) {
         formStatus.username = false;
-        mostraErrore("JS: Username già in uso");
+        mostraErrore("Username già in uso");
     } else {
         formStatus.username = true;
         nascondiErrore();
@@ -49,7 +62,7 @@ function jsonCheckUsername(json) {
 function jsonCheckEmail(json) {
     if (json.exists) {
         formStatus.email = false;
-        mostraErrore("JS: Email già utilizzata");
+        mostraErrore("Email già utilizzata");
     } else {
         formStatus.email = true;
         nascondiErrore();
@@ -63,9 +76,10 @@ function fetchResponse(response) {
 
 function checkUsername() {
     const input = document.querySelector('.username input');
-    if(input.value.length === 0 || input.value.length > 15) {
+
+    if (input.value.length === 0 || input.value.length > 15) {
         formStatus.username = false;
-        mostraErrore("JS: Lo username deve essere compreso tra 1 e 15 caratteri");
+        mostraErrore("Lo username deve essere compreso tra 1 e 15 caratteri");
     } else {
         nascondiErrore();
         fetch(check_username_url + "?q="+encodeURIComponent(input.value)).then(fetchResponse).then(jsonCheckUsername);
@@ -74,8 +88,9 @@ function checkUsername() {
 
 function checkEmail() {
     const emailInput = document.querySelector('.email input');
-    if(emailInput.value.length === 0) {
-        mostraErrore("JS: Email non valida");
+
+    if (emailInput.value.length === 0) {
+        mostraErrore("Email non valida");
         formStatus.email = false;
     } else {
         nascondiErrore();
@@ -85,22 +100,24 @@ function checkEmail() {
 
 function checkPassword() {
     const input = document.querySelector('.password input');
+
     formStatus.password = input.value.length === 0 || input.value.length >= 8;
     if (formStatus.password) {
-            nascondiErrore();
+        nascondiErrore();
     } else {
-        mostraErrore("JS: La password deve avere almeno 8 caratteri");
+        mostraErrore("La password deve avere almeno 8 caratteri");
     }
 }
 
 function checkConfirmPassword() {
     const confirmInput = document.querySelector('.confirm_password input');
     const passwordInput = document.querySelector('.password input');
+    
     formStatus.confirmPassword = confirmInput.value === passwordInput.value;
     if (formStatus.confirmPassword) {
         nascondiErrore();
     } else {
-        mostraErrore("JS: Le password non coincidono");
+        mostraErrore("Le password non coincidono");
     }
 }
 
@@ -110,7 +127,7 @@ function checkOldPassword() {
     
     if (newPasswordInput.value.length > 0 && oldPasswordInput.value.length === 0) {
         formStatus.oldPassword = false;
-        mostraErrore("JS: Inserisci la vecchia password per confermare");
+        mostraErrore("Inserisci la vecchia password per confermare");
     } else {
         formStatus.oldPassword = true;
     }
@@ -127,7 +144,6 @@ const formStatus = {
 };
 
 function checkProfile(event) {
-
     if (!formStatus.name || !formStatus.surname || !formStatus.username || !formStatus.email || !formStatus.oldPassword || !formStatus.password || !formStatus.confirmPassword) {
         event.preventDefault();
     }

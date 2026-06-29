@@ -54,7 +54,6 @@ function onCarrelloJson(json) {
     const riepilogo = document.querySelector('.riepilogo-ordine');
 
     if (json.length === 0) {
-
         const messaggio = document.createElement('h3');
         messaggio.textContent = "Al momento non sono presenti prodotti nel carrello";
         messaggio.classList.add("carrello-vuoto");
@@ -125,7 +124,7 @@ function onCarrelloJson(json) {
             btnRimuovi.href = "#"; 
             btnRimuovi.classList.add('btn-rimuovi'); 
             btnRimuovi.textContent = "Rimuovi"; 
-            btnRimuovi.dataset.id = cibo.product_id; 
+            btnRimuovi.dataset.id = cibo.product_id;
             btnRimuovi.addEventListener('click', gestisciEliminazione);
             btnRimuovi.addEventListener('click', noRefresh);
 
@@ -147,7 +146,7 @@ function onCarrelloJson(json) {
 fetch(LOAD_CART_URL).then(onResponse).then(onCarrelloJson);
 
 function ricaricaCarrello() {
-    fetch(LOAD_CART_URL).then(onResponse).then(onCarrelloJson)
+    fetch(LOAD_CART_URL).then(onResponse).then(onCarrelloJson);
 }
 
 function gestisciAggiunta(event) {
@@ -178,6 +177,7 @@ function gestisciRimozione(event) {
 
 function gestisciEliminazione(event) {
     const idCibo = event.currentTarget.dataset.id;
+
     const formData = new FormData();
     formData.append('id_cibo', idCibo); 
 
@@ -187,5 +187,3 @@ function gestisciEliminazione(event) {
         headers: {'X-CSRF-TOKEN': token}
     }).then(onResponse).then(ricaricaCarrello);
 }
-
-const addToCartLabels = document.querySelectorAll('.add-to-order');

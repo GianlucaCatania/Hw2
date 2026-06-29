@@ -22,7 +22,7 @@ class CartController extends Controller {
         $user_id = session('user_id');
 
         if ($user_id == null) {
-            return redirect('login');
+            return response()->json(['ok' => false]);
         } 
 
         $user = User::find($user_id);
@@ -42,7 +42,7 @@ class CartController extends Controller {
         $user_id = session('user_id');
 
         if ($user_id == null || $request == null) {
-            return redirect('login');
+            return response()->json(['ok' => false]);
         } 
 
         $idCibo = $request->id_cibo;
@@ -70,7 +70,7 @@ class CartController extends Controller {
         $user_id = session('user_id');
 
         if ($user_id == null || $request == null) {
-            return redirect('login');
+            return response()->json(['ok' => false]);
         } 
 
         $idCibo = $request->id_cibo;
@@ -95,7 +95,7 @@ class CartController extends Controller {
         $user_id = session('user_id');
 
         if ($user_id == null || $request == null) {
-            return redirect('login');
+            return response()->json(['ok' => false]);
         }     
 
         $idCibo = $request->id_cibo;
@@ -114,8 +114,8 @@ class CartController extends Controller {
 
         $user_id = session('user_id');
 
-        if ($user_id == null || $request == null) {
-            return redirect('login');
+        if ($user_id == null) {
+            return response()->json(['ok' => false]);
         } 
 
         $user = User::find($user_id);
@@ -134,7 +134,7 @@ class CartController extends Controller {
         $user_id = session('user_id');
 
         if ($user_id == null || $request == null) {
-            return redirect('login');
+            return response()->json(['ok' => false]);
         }
 
         $response = Http::asForm()->post('https://httpbin.org/post', [

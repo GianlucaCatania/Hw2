@@ -1,8 +1,10 @@
+console.log("ciao");
+
 function mostraErrore(messaggio) {
     const errorBox = document.querySelector('.error-line');
     const errorSpan = errorBox.querySelector('span');
     
-    errorSpan.textContent = messaggio;
+    errorSpan.textContent = "JS: " + messaggio;
     errorBox.classList.remove('hidden');
 }
 
@@ -72,6 +74,7 @@ function checkUsername() {
 
 function checkEmail() {
     const emailInput = document.querySelector('.email input');
+
     if(emailInput.value.length === 0) {
         mostraErrore("Email non valida");
         formStatus.email = false;
@@ -84,6 +87,7 @@ function checkEmail() {
 function checkPassword(event) {
     const passwordInput = event.currentTarget;
     formStatus.password = passwordInput.value.length >= 8;
+
     if (formStatus.password) {
         nascondiErrore();
     } else {
@@ -92,7 +96,9 @@ function checkPassword(event) {
 }
 function checkConfirmPassword(event) {
     const confirmPasswordInput = event.currentTarget;
-    formStatus.confirmPassword = confirmPasswordInput.value === document.querySelector('.password input').value;
+    const password = document.querySelector('.password input').value;
+    formStatus.confirmPassword = confirmPasswordInput.value === password;
+
     if (formStatus.confirmPassword) {
         nascondiErrore();
     } else {
@@ -103,6 +109,7 @@ function checkConfirmPassword(event) {
 function checkSignup(event) {
     const checkbox = document.querySelector('.allow input');
     formStatus.allow = checkbox.checked;
+
     if (!formStatus.name || !formStatus.surname || !formStatus.username || !formStatus.email || !formStatus.password || !formStatus.confirmPassword || !formStatus.allow) {
         event.preventDefault();
         mostraErrore("Riempi tutti i campi");
@@ -119,7 +126,6 @@ const formStatus = {
     allow: false
 };
 
-
 document.querySelector('.name input').addEventListener('blur', checkName);
 document.querySelector('.surname input').addEventListener('blur', checkSurname);
 document.querySelector('.username input').addEventListener('blur', checkUsername);
@@ -128,3 +134,5 @@ document.querySelector('.password input').addEventListener('blur', checkPassword
 document.querySelector('.confirm_password input').addEventListener('blur', checkConfirmPassword);
 
 document.querySelector('form').addEventListener('submit', checkSignup);
+
+

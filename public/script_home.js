@@ -25,14 +25,19 @@ for (let link of links) {
 
 function mostraNascondiSezione() {
 
-  if (carica_altri_button.textContent === "Mostra meno") {
-    carica_altri_section.classList.add("hidden");
-    carica_altri_button.textContent = "Carica altri"; 
-    
-  } else {
-    carica_altri_section.classList.remove("hidden");
-    carica_altri_button.textContent = "Mostra meno";
-  }
+    const anchor = document.querySelector("#anchor");
+
+    if (carica_altri_button.textContent === "Mostra meno") {
+        carica_altri_section.classList.add("hidden");
+        carica_altri_section.classList.remove("last-category");
+        carica_altri_button.textContent = "Carica altri"; 
+        anchor.classList.add("last-category");
+    } else {
+        anchor.classList.remove("last-category");
+        carica_altri_section.classList.remove("hidden");
+        carica_altri_section.classList.add("last-category");
+        carica_altri_button.textContent = "Mostra meno";
+    }
 }
 
 const carica_altri_button = document.querySelector("#carica-altri");
@@ -70,47 +75,47 @@ function onJson(json) {
     const container = document.createElement('div');
     
     if (json !== null) {
-      let nutrienti = json.ingredients[0].parsed[0].nutrients;
-      let calorie = Math.floor(nutrienti.ENERC_KCAL.quantity);
-      let proteine = Math.floor(nutrienti.PROCNT.quantity);
-      let grassi = Math.floor(nutrienti.FAT.quantity);
-      let carboidrati = Math.floor(nutrienti.CHOCDF.quantity);
-      let fibre = Math.floor(nutrienti.FIBTG.quantity);
-      let zuccheri = Math.floor(nutrienti.SUGAR.quantity);
-      
-      const titolo = document.createElement('h2');
-      titolo.textContent = 'Valori Nutrizionali';
-      container.appendChild(titolo);
+        let nutrienti = json.ingredients[0].parsed[0].nutrients;
+        let calorie = Math.floor(nutrienti.ENERC_KCAL.quantity);
+        let proteine = Math.floor(nutrienti.PROCNT.quantity);
+        let grassi = Math.floor(nutrienti.FAT.quantity);
+        let carboidrati = Math.floor(nutrienti.CHOCDF.quantity);
+        let fibre = Math.floor(nutrienti.FIBTG.quantity);
+        let zuccheri = Math.floor(nutrienti.SUGAR.quantity);
+        
+        const titolo = document.createElement('h2');
+        titolo.textContent = 'Valori Nutrizionali';
+        container.appendChild(titolo);
 
-      const pCal = document.createElement('p');
-      pCal.textContent = 'Calorie: ' + calorie + ' kcal';
-      container.appendChild(pCal);
+        const pCal = document.createElement('p');
+        pCal.textContent = 'Calorie: ' + calorie + ' kcal';
+        container.appendChild(pCal);
 
-      const pProt = document.createElement('p');
-      pProt.textContent = 'Proteine: ' + proteine + ' g';
-      container.appendChild(pProt);
+        const pProt = document.createElement('p');
+        pProt.textContent = 'Proteine: ' + proteine + ' g';
+        container.appendChild(pProt);
 
-      const pGrass = document.createElement('p');
-      pGrass.textContent = 'Grassi: ' + grassi + ' g';
-      container.appendChild(pGrass);
+        const pGrass = document.createElement('p');
+        pGrass.textContent = 'Grassi: ' + grassi + ' g';
+        container.appendChild(pGrass);
 
-      const pCarb = document.createElement('p');
-      pCarb.textContent = 'Carboidrati: ' + carboidrati + ' g';
-      container.appendChild(pCarb);
+        const pCarb = document.createElement('p');
+        pCarb.textContent = 'Carboidrati: ' + carboidrati + ' g';
+        container.appendChild(pCarb);
 
-      const pZucc = document.createElement('p');
-      pZucc.textContent = 'Zuccheri: ' + zuccheri + ' g';
-      container.appendChild(pZucc);
+        const pZucc = document.createElement('p');
+        pZucc.textContent = 'Zuccheri: ' + zuccheri + ' g';
+        container.appendChild(pZucc);
 
-      const pFibre = document.createElement('p');
-      pFibre.textContent = 'Fibre: ' + fibre + ' g';
-      container.appendChild(pFibre);
+        const pFibre = document.createElement('p');
+        pFibre.textContent = 'Fibre: ' + fibre + ' g';
+        container.appendChild(pFibre);
     }
 
     else {
-      const errore = document.createElement('h5');
-      errore.textContent = "Errore nel JSON restituito dall'API";
-      container.appendChild(errore);
+        const errore = document.createElement('h5');
+        errore.textContent = "Errore nel JSON restituito dall'API";
+        container.appendChild(errore);
     }
 
     modale.style.top = window.pageYOffset + 'px'; 
@@ -143,6 +148,7 @@ function chiudiModale(event) {
 }
 
 const modale = document.querySelector('#modale-risultati');
+
 if (modale) {
     modale.addEventListener('click', chiudiModale);
 }
@@ -179,6 +185,7 @@ function onCibiJson(json) {
 
         const imgCibo = document.createElement('img');
         imgCibo.src = cibo.image;
+        imgCibo.classList.add('food-img');
 
         const cardImg = document.createElement('div');
         cardImg.classList.add('card-img');
@@ -233,12 +240,13 @@ function addToCart(event) {
 
     const notify = document.createElement('div');
     notify.classList.add('banner-carrello'); 
-
     const body = document.querySelector('body');
     
     const labelAddToCart = event.currentTarget;
+
     const foodId = labelAddToCart.dataset.id;
     const foodName = labelAddToCart.dataset.name;
+
     const formData = new FormData();
     formData.append('id_cibo', foodId); 
 
@@ -255,10 +263,10 @@ function addToCart(event) {
             
             setTimeout(function() {
                 notify.remove();
-            }, 2300); 
+            }, 2300);
         } 
         else if (data !== null && data.ok === false) {
-            notify.textContent = "Errore: " + data.errore;
+            notify.textContent = "Non puoi selezionare prodotti senza aver effettuato l'accesso";
             body.appendChild(notify);
             
             setTimeout(function() {

@@ -28,22 +28,20 @@
 
         <div class="content-flex">
             <nav class="sidebar">
-                <div class="sidebar-menu">
-                    <a href="#">Menù</a>
-                    <a href="#">Snack</a>
-                    <a href="#">Drink</a>
-                    <a href="#">Pollo</a>
-                    <a href="#">Panini e Twist</a>
-                    <a href="#">Box Meal</a>
-                    <a href="#">Kids&Family</a>
-                    <a href="#">Veggie</a>
-                    <a href="#">Insalatone</a>
-                    <a href="#">Snack e contorni</a>
-                    <a href="#">Dolci</a>
-                    <a href="#">Bibite</a>
-                    <a href="#">Prezzi Smart</a>
-                    <a href="#">Offerte</a>
-                </div>
+                <a href="#">Menù</a>
+                <a href="#">Snack</a>
+                <a href="#">Drink</a>
+                <a href="#">Pollo</a>
+                <a href="#">Panini e Twist</a>
+                <a href="#">Box Meal</a>
+                <a href="#">Kids&Family</a>
+                <a href="#">Veggie</a>
+                <a href="#">Insalatone</a>
+                <a href="#">Snack e contorni</a>
+                <a href="#">Dolci</a>
+                <a href="#">Bibite</a>
+                <a href="#">Prezzi Smart</a>
+                <a href="#">Offerte</a>
             </nav>
 
             <article id="article">
@@ -56,11 +54,11 @@
                     <h2 class="category-title">Snack</h2>
                 </section>
 
-                <section class="menu-category" data-category="drink">
+                <section id="anchor" class="menu-category last-category" data-category="drink">
                     <h2 class="category-title">Drink</h2>
                 </section>
 
-                <section id="sezione-extra" class="menu-category last-category hidden" data-category="extra">
+                <section id="sezione-extra" class="menu-category hidden" data-category="extra">
                     <h2 class="category-title">Varie</h2>
                 </section>
 

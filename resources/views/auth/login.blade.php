@@ -20,20 +20,20 @@
                 <p class='error'>{{ $error }}</p>
             @endif
 
-            <form name='login' method='post' action="{{ url('login') }}">
+            <form id="form" name='login' method='post' action="{{ url('login') }}">
                 @csrf
 
                 <div class="username">
                     <label for='username'>Username</label>
-                    <input type='text' name='username'>
+                    <input type='text' name='username' id="username">
                 </div>
                 <div class="password">
                     <label for='password'>Password</label>
-                    <input type='password' name='password'>
+                    <input type='password' name='password' id="password">
                 </div>
                 <div class="submit-container">
                     <div class="login-btn">
-                        <input type='submit' value="ACCEDI">
+                        <input type='submit' value="ACCEDI" id="btn-accedi">
                     </div>
                 </div>
             </form>

@@ -27,7 +27,7 @@ class ProfileController extends Controller {
         $user_id = session('user_id');
 
         if ($user_id == null) {
-            return redirect('login');
+            return response()->json(['ok' => false]);
         }
 
         $user = User::find($user_id);
