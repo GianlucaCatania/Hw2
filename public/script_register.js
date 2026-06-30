@@ -134,5 +134,3 @@ document.querySelector('.password input').addEventListener('blur', checkPassword
 document.querySelector('.confirm_password input').addEventListener('blur', checkConfirmPassword);
 
 document.querySelector('form').addEventListener('submit', checkSignup);
-
-

@@ -24,7 +24,6 @@ function mostraErrore(messaggio) {
 function nascondiErrore() {
     const errorBox = document.querySelector('.error-line');
     errorBox.classList.add('hidden');
-
 }
 
 function checkName() {

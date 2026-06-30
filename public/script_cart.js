@@ -1,16 +1,16 @@
 const token = document.head.querySelector('meta[name="csrf-token"]').content;
 
-function onJson(json) {
-    if (json !== null) {
-        fetch(ORDER_URL).then(onResponse).then(ricaricaCarrello);
-    }
-}
-
 function onResponse(response) {
     if(response.ok) {
         return response.json();
     } else {
         return null;
+    }
+}
+
+function onJson(json) {
+    if (json !== null) {
+        fetch(ORDER_URL).then(onResponse).then(ricaricaCarrello);
     }
 }
 
